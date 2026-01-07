@@ -151,22 +151,22 @@ const SettingsPage: React.FC = () => {
           {/* Content */}
           <div className="lg:col-span-3">
             {activeTab === 'general' && (
-              <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10 space-y-6">
-                <h3 className="text-lg font-semibold text-white mb-4">General Settings</h3>
+              <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10 space-y-4 lg:space-y-6">
+                <h3 className="text-base lg:text-lg font-semibold text-white mb-3 lg:mb-4">General Settings</h3>
                 
                 {/* Theme */}
-                <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                <div className="flex items-center justify-between p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div className="flex items-center space-x-3">
-                    {settings.theme === 'dark' ? <Moon className="w-5 h-5 text-purple-400" /> : <Sun className="w-5 h-5 text-yellow-400" />}
+                    {settings.theme === 'dark' ? <Moon className="w-4 lg:w-5 h-4 lg:h-5 text-purple-400" /> : <Sun className="w-4 lg:w-5 h-4 lg:h-5 text-yellow-400" />}
                     <div>
-                      <div className="text-white font-medium">Theme</div>
-                      <div className="text-sm text-gray-500">Choose your preferred theme</div>
+                      <div className="text-sm lg:text-base text-white font-medium">Theme</div>
+                      <div className="text-xs lg:text-sm text-gray-500">Choose your preferred theme</div>
                     </div>
                   </div>
                   <select
                     value={settings.theme}
                     onChange={(e) => setSettings(prev => ({ ...prev, theme: e.target.value }))}
-                    className="bg-black/30 text-white px-4 py-2 rounded-lg border border-white/10"
+                    className="bg-black/30 text-white px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg border border-white/10 text-sm"
                   >
                     <option value="dark">Dark</option>
                     <option value="light">Light</option>
