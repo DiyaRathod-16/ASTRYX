@@ -128,7 +128,7 @@ const InteractiveMapEnhanced: React.FC<InteractiveMapEnhancedProps> = ({
             <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #374151;">
               <span style="font-size: 11px; color: #9ca3af;">Swarm Consensus:</span>
               <span style="font-size: 13px; font-weight: bold; color: #10b981; margin-left: 4px;">
-                ${Math.round((anomaly.swarmConsensus.score || 0.85) * 100)}%
+                ${Math.round((typeof anomaly.swarmConsensus === 'object' ? anomaly.swarmConsensus.score : anomaly.swarmConsensus || 0.85) * 100)}%
               </span>
             </div>
           ` : ''}

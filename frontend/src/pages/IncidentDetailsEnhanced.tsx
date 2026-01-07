@@ -25,7 +25,7 @@ const IncidentDetailsEnhanced: React.FC = () => {
 
   const fetchAnomalyDetails = async () => {
     try {
-      const data = await apiService.fetchAnomalyById(id!);
+      const data = await apiService.fetchAnomaly(id!);
       setAnomaly(data);
     } catch (error) {
       console.error('Failed to fetch anomaly:', error);
@@ -98,7 +98,8 @@ const IncidentDetailsEnhanced: React.FC = () => {
     );
   }
 
-  const swarmAgents = anomaly.swarmConsensus?.agents || [
+  const swarmConsensus = typeof anomaly.swarmConsensus === 'object' ? anomaly.swarmConsensus : null;
+  const swarmAgents = swarmConsensus?.agents || [
     { type: 'text', vote: 'verified', confidence: 0.91 },
     { type: 'image', vote: 'verified', confidence: 0.88 },
     { type: 'audio', vote: 'verified', confidence: 0.85 },
@@ -106,6 +107,8 @@ const IncidentDetailsEnhanced: React.FC = () => {
     { type: 'verification', vote: 'verified', confidence: 0.94 },
     { type: 'forecasting', vote: 'verified', confidence: 0.89 }
   ];
+
+  const consensusScore = swarmConsensus?.score ?? (typeof anomaly.swarmConsensus === 'number' ? anomaly.swarmConsensus : 0.87);
 
   const timeline = [
     { time: '10:32:15', event: 'Anomaly detected by sensor agent', type: 'detection' },
@@ -345,7 +348,7 @@ const IncidentDetailsEnhanced: React.FC = () => {
               </div>
               <div className="text-center mb-4">
                 <div className="text-4xl font-bold text-green-400 mb-1">
-                  {Math.round((anomaly.swarmConsensus?.score || 0.87) * 100)}%
+                  {Math.round(consensusScore * 100)}%
                 </div>
                 <div className="text-sm text-gray-400">Overall Consensus</div>
               </div>

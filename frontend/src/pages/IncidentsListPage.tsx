@@ -244,7 +244,7 @@ const IncidentsListPage: React.FC = () => {
                         <div className="flex items-center space-x-1">
                           <TrendingUp className="w-4 h-4 text-green-400" />
                           <span className="text-green-400">
-                            {Math.round((anomaly.swarmConsensus.score || 0.85) * 100)}% consensus
+                            {Math.round((typeof anomaly.swarmConsensus === 'object' ? anomaly.swarmConsensus.score : anomaly.swarmConsensus || 0.85) * 100)}% consensus
                           </span>
                         </div>
                       )}
