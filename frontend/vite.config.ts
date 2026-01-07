@@ -16,6 +16,8 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    host: true,
+    allowedHosts: ['humorous-flexibility-production.up.railway.app'],
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
@@ -26,5 +28,9 @@ export default defineConfig({
         ws: true,
       },
     },
+  },
+  preview: {
+    host: true,
+    allowedHosts: ['humorous-flexibility-production.up.railway.app'],
   },
 });
