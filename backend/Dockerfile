@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package*.json ./
-RUN npm ci --only=production=false
+RUN npm ci
 
 # Copy source code
 COPY . .
@@ -18,7 +18,7 @@ FROM node:18-alpine AS production
 
 WORKDIR /app
 
-# Install production dependencies only
+# Copy package files and install production dependencies
 COPY package*.json ./
 RUN npm ci --only=production && npm cache clean --force
 
@@ -30,12 +30,11 @@ RUN addgroup -g 1001 -S nodejs
 RUN adduser -S astryx -u 1001
 USER astryx
 
-# Expose port
-EXPOSE 3000
+# Railway sets PORT dynamically
+ENV PORT=3001
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => r.statusCode === 200 ? process.exit(0) : process.exit(1))"
+# Expose port (Railway ignores this and uses PORT env)
+EXPOSE 3001
 
 # Start the application
 CMD ["node", "dist/index.js"]
