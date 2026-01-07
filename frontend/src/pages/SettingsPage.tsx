@@ -155,7 +155,7 @@ const SettingsPage: React.FC = () => {
                 <h3 className="text-base lg:text-lg font-semibold text-white mb-3 lg:mb-4">General Settings</h3>
                 
                 {/* Theme */}
-                <div className="flex items-center justify-between p-3 lg:p-4 bg-black/30 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div className="flex items-center space-x-3">
                     {settings.theme === 'dark' ? <Moon className="w-4 lg:w-5 h-4 lg:h-5 text-purple-400" /> : <Sun className="w-4 lg:w-5 h-4 lg:h-5 text-yellow-400" />}
                     <div>
@@ -166,7 +166,7 @@ const SettingsPage: React.FC = () => {
                   <select
                     value={settings.theme}
                     onChange={(e) => setSettings(prev => ({ ...prev, theme: e.target.value }))}
-                    className="bg-black/30 text-white px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg border border-white/10 text-sm"
+                    className="w-full sm:w-auto bg-black/30 text-white px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg border border-white/10 text-sm"
                   >
                     <option value="dark">Dark</option>
                     <option value="light">Light</option>
@@ -175,15 +175,15 @@ const SettingsPage: React.FC = () => {
                 </div>
 
                 {/* Language */}
-                <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div>
-                    <div className="text-white font-medium">Language</div>
-                    <div className="text-sm text-gray-500">Select interface language</div>
+                    <div className="text-sm lg:text-base text-white font-medium">Language</div>
+                    <div className="text-xs lg:text-sm text-gray-500">Select interface language</div>
                   </div>
                   <select
                     value={settings.language}
                     onChange={(e) => setSettings(prev => ({ ...prev, language: e.target.value }))}
-                    className="bg-black/30 text-white px-4 py-2 rounded-lg border border-white/10"
+                    className="w-full sm:w-auto bg-black/30 text-white px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg border border-white/10 text-sm"
                   >
                     <option value="en">English</option>
                     <option value="es">Spanish</option>
@@ -194,15 +194,15 @@ const SettingsPage: React.FC = () => {
                 </div>
 
                 {/* Timezone */}
-                <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div>
-                    <div className="text-white font-medium">Timezone</div>
-                    <div className="text-sm text-gray-500">Set your local timezone</div>
+                    <div className="text-sm lg:text-base text-white font-medium">Timezone</div>
+                    <div className="text-xs lg:text-sm text-gray-500">Set your local timezone</div>
                   </div>
                   <select
                     value={settings.timezone}
                     onChange={(e) => setSettings(prev => ({ ...prev, timezone: e.target.value }))}
-                    className="bg-black/30 text-white px-4 py-2 rounded-lg border border-white/10"
+                    className="w-full sm:w-auto bg-black/30 text-white px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg border border-white/10 text-sm"
                   >
                     <option value="UTC">UTC</option>
                     <option value="EST">EST (UTC-5)</option>
@@ -214,29 +214,29 @@ const SettingsPage: React.FC = () => {
                 </div>
 
                 {/* Auto Refresh */}
-                <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div className="flex items-center space-x-3">
-                    <RefreshCw className="w-5 h-5 text-cyan-400" />
+                    <RefreshCw className="w-4 lg:w-5 h-4 lg:h-5 text-cyan-400" />
                     <div>
-                      <div className="text-white font-medium">Auto Refresh</div>
-                      <div className="text-sm text-gray-500">Automatically refresh dashboard data</div>
+                      <div className="text-sm lg:text-base text-white font-medium">Auto Refresh</div>
+                      <div className="text-xs lg:text-sm text-gray-500">Automatically refresh dashboard data</div>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-3">
                     <input
                       type="number"
                       value={settings.refreshInterval}
                       onChange={(e) => setSettings(prev => ({ ...prev, refreshInterval: parseInt(e.target.value) }))}
-                      className="w-20 bg-black/30 text-white px-3 py-2 rounded-lg border border-white/10 text-center"
+                      className="w-16 bg-black/30 text-white px-2 py-1.5 rounded-lg border border-white/10 text-center text-sm"
                       min={5}
                       max={300}
                     />
-                    <span className="text-gray-400 text-sm">seconds</span>
+                    <span className="text-gray-400 text-xs">seconds</span>
                     <button
                       onClick={() => setSettings(prev => ({ ...prev, autoRefresh: !prev.autoRefresh }))}
-                      className={`w-12 h-6 rounded-full transition-all ${settings.autoRefresh ? 'bg-cyan-500' : 'bg-gray-600'}`}
+                      className={`w-10 h-5 rounded-full transition-all flex-shrink-0 ${settings.autoRefresh ? 'bg-cyan-500' : 'bg-gray-600'}`}
                     >
-                      <div className={`w-5 h-5 rounded-full bg-white transition-all ${settings.autoRefresh ? 'translate-x-6' : 'translate-x-0.5'}`} />
+                      <div className={`w-4 h-4 rounded-full bg-white transition-all ${settings.autoRefresh ? 'translate-x-5' : 'translate-x-0.5'}`} />
                     </button>
                   </div>
                 </div>
