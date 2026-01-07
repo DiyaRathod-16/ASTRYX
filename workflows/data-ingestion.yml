@@ -1,0 +1,135 @@
+name: data-ingestion
+version: "1.0"
+description: Scheduled workflow for collecting data from external sources
+
+triggers:
+  - schedule: "*/15 * * * *" # Every 15 minutes
+  - event: manual.ingestion
+
+config:
+  timeout: 900 # 15 minutes
+  parallel_sources: true
+  deduplication: true
+
+steps:
+  - id: start
+    name: Start Ingestion
+    type: action
+    action: log_ingestion_start
+    next: fetch_data
+
+  - id: fetch_data
+    name: Fetch From All Sources
+    type: parallel
+    branches:
+      - id: usgs_branch
+        steps:
+          - id: fetch_usgs
+            name: Fetch USGS Earthquakes
+            type: action
+            action: fetch_external_data
+            config:
+              source: usgs
+              endpoint: https://earthquake.usgs.gov/fdsnws/event/1/query
+              params:
+                format: geojson
+                starttime: "${now - 1h}"
+                minmagnitude: 2.5
+                
+      - id: eonet_branch
+        steps:
+          - id: fetch_eonet
+            name: Fetch NASA EONET
+            type: action
+            action: fetch_external_data
+            config:
+              source: eonet
+              endpoint: https://eonet.gsfc.nasa.gov/api/v3/events
+              params:
+                status: open
+                limit: 50
+                
+      - id: weather_branch
+        steps:
+          - id: fetch_weather
+            name: Fetch Weather Alerts
+            type: action
+            action: fetch_external_data
+            config:
+              source: openweather
+              requires_api_key: true
+              
+      - id: gdelt_branch
+        steps:
+          - id: fetch_gdelt
+            name: Fetch GDELT Events
+            type: action
+            action: fetch_external_data
+            config:
+              source: gdelt
+              endpoint: https://api.gdeltproject.org/api/v2/doc/doc
+              params:
+                mode: artlist
+                maxrecords: 100
+                
+    next: parse_data
+
+  - id: parse_data
+    name: Parse Raw Data
+    type: action
+    action: parse_ingested_data
+    config:
+      normalize: true
+      extract_location: true
+      detect_duplicates: true
+    next: validate_data
+
+  - id: validate_data
+    name: Validate Data Quality
+    type: action
+    action: validate_data
+    config:
+      min_confidence: 0.5
+      require_location: true
+      remove_invalid: true
+    next: check_anomalies
+
+  - id: check_anomalies
+    name: Check for New Anomalies
+    type: gateway
+    gateway_type: exclusive
+    conditions:
+      - expression: "${new_anomalies_count > 0}"
+        next: store_and_notify
+      - expression: "true"
+        next: log_completion
+
+  - id: store_and_notify
+    name: Store and Notify
+    type: action
+    action: store_anomalies
+    config:
+      trigger_processing_workflow: true
+      broadcast_websocket: true
+    next: log_completion
+
+  - id: log_completion
+    name: Log Completion
+    type: action
+    action: log_ingestion_complete
+    config:
+      log_stats: true
+      update_source_status: true
+    next: end
+
+  - id: end
+    name: Ingestion Complete
+    type: end
+
+error_handlers:
+  - step: fetch_*
+    on_error: continue
+    log_error: true
+  - step: "*"
+    on_error: retry
+    max_retries: 2

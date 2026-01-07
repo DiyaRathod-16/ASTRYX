@@ -1,0 +1,109 @@
+name: anomaly-processing
+version: "1.0"
+description: Main workflow for processing detected anomalies through ASTRYX
+
+triggers:
+  - event: anomaly.detected
+  - event: anomaly.created
+
+config:
+  timeout: 3600 # 1 hour
+  retries: 3
+  auto_approve_threshold: 0.95
+
+steps:
+  - id: intake
+    name: Anomaly Intake
+    type: action
+    action: collect_initial_data
+    timeout: 60
+    config:
+      gather_metadata: true
+      validate_location: true
+    next: ai_analysis
+
+  - id: ai_analysis
+    name: AI Analysis
+    type: action
+    action: analyze_with_gemini
+    timeout: 120
+    config:
+      model: gemini-1.5-pro
+      multimodal: true
+      include_satellite: true
+    next: verification
+
+  - id: verification
+    name: Cross-Source Verification
+    type: action
+    action: verify_anomaly
+    timeout: 180
+    config:
+      min_sources: 2
+      confidence_threshold: 0.7
+    next: decision_gateway
+
+  - id: decision_gateway
+    name: Decision Gateway
+    type: gateway
+    gateway_type: exclusive
+    conditions:
+      - expression: "${confidence >= 0.95 && autonomous_mode == true}"
+        next: auto_approve
+      - expression: "${severity == 'critical'}"
+        next: human_review
+      - expression: "${confidence >= 0.8}"
+        next: auto_approve
+      - expression: "true"
+        next: human_review
+
+  - id: auto_approve
+    name: Auto Approve
+    type: action
+    action: approve_anomaly
+    config:
+      update_status: confirmed
+      create_audit_log: true
+    next: response_coordination
+
+  - id: human_review
+    name: Human Review Required
+    type: human_task
+    assignee: analyst
+    timeout: 7200 # 2 hours
+    config:
+      notification_channels:
+        - websocket
+        - email
+      escalation_after: 3600
+    next: response_coordination
+
+  - id: response_coordination
+    name: Response Coordination
+    type: action
+    action: coordinate_response
+    config:
+      generate_recommendations: true
+      estimate_impact: true
+    next: notification
+
+  - id: notification
+    name: Send Notifications
+    type: action
+    action: send_notifications
+    config:
+      channels:
+        - websocket
+        - dashboard
+      include_report: true
+    next: end
+
+  - id: end
+    name: Workflow Complete
+    type: end
+
+error_handlers:
+  - step: "*"
+    on_error: retry
+    max_retries: 3
+    fallback: human_review
