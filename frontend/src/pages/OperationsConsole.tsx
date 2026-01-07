@@ -94,7 +94,7 @@ const OperationsConsole: React.FC = () => {
         </div>
 
         {/* Quick Stats - Scrollable on mobile */}
-        <div className="flex lg:grid lg:grid-cols-5 gap-3 lg:gap-4 mb-6 lg:mb-8 overflow-x-auto pb-2 lg:pb-0 -mx-3 px-3 lg:mx-0 lg:px-0">
+        <div className="flex lg:grid lg:grid-cols-5 gap-3 lg:gap-4 mb-6 lg:mb-8 overflow-x-auto pb-2 lg:pb-0 -mx-3 px-3 lg:mx-0 lg:px-0 scrollbar-hide">
           <div className="flex-shrink-0 min-w-[100px] lg:min-w-0 bg-black/30 backdrop-blur-sm rounded-xl p-3 lg:p-4 border border-white/10">
             <div className="flex items-center justify-between mb-2">
               <Shield className="w-5 lg:w-6 h-5 lg:h-6 text-green-400" />
@@ -118,10 +118,10 @@ const OperationsConsole: React.FC = () => {
           </div>
           <div className="flex-shrink-0 min-w-[100px] lg:min-w-0 bg-black/30 backdrop-blur-sm rounded-xl p-3 lg:p-4 border border-white/10">
             <div className="flex items-center justify-between mb-2">
-              <Activity className="w-6 h-6 text-purple-400" />
+              <Activity className="w-5 lg:w-6 h-5 lg:h-6 text-purple-400" />
             </div>
-            <div className="text-2xl font-bold text-white">{workflows.filter(w => w.status === 'running').length}</div>
-            <div className="text-sm text-gray-400">Running Workflows</div>
+            <div className="text-lg lg:text-2xl font-bold text-white">{workflows.filter(w => w.status === 'running').length}</div>
+            <div className="text-xs lg:text-sm text-gray-400">Running Workflows</div>
           </div>
           <div className="flex-shrink-0 min-w-[100px] lg:min-w-0 bg-black/30 backdrop-blur-sm rounded-xl p-3 lg:p-4 border border-white/10">
             <div className="flex items-center justify-between mb-2">

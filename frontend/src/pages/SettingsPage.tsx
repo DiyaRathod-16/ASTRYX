@@ -102,14 +102,14 @@ const SettingsPage: React.FC = () => {
 
       <main className="flex-1 ml-0 lg:ml-64 px-3 lg:px-8 pt-[60px] lg:pt-8 pb-[72px] lg:pb-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 gap-3">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Settings</h1>
-            <p className="text-gray-400">Configure your ASTRYX preferences</p>
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 lg:mb-2">Settings</h1>
+            <p className="text-xs sm:text-sm text-gray-400">Configure your ASTRYX preferences</p>
           </div>
           <button
             onClick={handleSave}
-            className={`flex items-center space-x-2 px-6 py-2 rounded-lg transition-all ${
+            className={`flex items-center justify-center space-x-2 px-4 lg:px-6 py-2 rounded-lg transition-all text-sm lg:text-base ${
               saved 
                 ? 'bg-green-500/20 text-green-400' 
                 : 'bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30'
@@ -131,7 +131,7 @@ const SettingsPage: React.FC = () => {
 
         <div className="flex flex-col lg:grid lg:grid-cols-4 gap-4 lg:gap-6">
           {/* Tabs - Horizontal scroll on mobile */}
-          <div className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 lg:space-y-2 -mx-3 px-3 lg:mx-0 lg:px-0">
+          <div className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 lg:space-y-2 -mx-3 px-3 lg:mx-0 lg:px-0 scrollbar-hide">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
