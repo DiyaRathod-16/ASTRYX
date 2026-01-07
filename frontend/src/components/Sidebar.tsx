@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { 
   Home, 
@@ -11,11 +11,14 @@ import {
   FileText, 
   Settings, 
   Info,
-  Zap
+  Zap,
+  Menu,
+  X
 } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const navItems = [
     { path: '/dashboard', icon: Home, label: 'Command Dashboard' },
@@ -30,8 +33,8 @@ const Sidebar: React.FC = () => {
     { path: '/about', icon: Info, label: 'About ASTRYX' },
   ];
 
-  return (
-    <aside className="fixed left-0 top-0 bottom-0 w-64 bg-black border-r border-gray-700 flex flex-col z-40">
+  const NavContent = ({ onItemClick }: { onItemClick?: () => void }) => (
+    <>
       {/* Logo */}
       <div className="h-20 px-6 flex items-center border-b border-gray-700">
         <div className="flex items-center gap-3">
@@ -54,6 +57,7 @@ const Sidebar: React.FC = () => {
             <NavLink
               key={item.path}
               to={item.path}
+              onClick={onItemClick}
               className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 group ${
                 isActive
                   ? 'bg-cyan-500/20 text-white border-l-2 border-cyan-400'
@@ -77,7 +81,45 @@ const Sidebar: React.FC = () => {
           <p className="text-sm text-green-400 font-semibold">All Systems Operational</p>
         </div>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile Header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-black border-b border-gray-700 z-50 flex items-center justify-between px-4">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
+            <Zap className="w-4 h-4 text-black" />
+          </div>
+          <h1 className="text-lg font-bold text-cyan-400">ASTRYX</h1>
+        </div>
+        <button 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="p-2 text-gray-400 hover:text-white"
+        >
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Sidebar Overlay */}
+      {mobileMenuOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-black/80 z-40"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Sidebar */}
+      <aside className={`lg:hidden fixed left-0 top-16 bottom-0 w-64 bg-black border-r border-gray-700 flex flex-col z-50 transform transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <NavContent onItemClick={() => setMobileMenuOpen(false)} />
+      </aside>
+
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 w-64 bg-black border-r border-gray-700 flex-col z-40">
+        <NavContent />
+      </aside>
+    </>
   );
 };
 

@@ -71,7 +71,7 @@ const IncidentDetailsEnhanced: React.FC = () => {
     return (
       <div className="flex min-h-screen bg-black">
         <Sidebar />
-        <main className="flex-1 ml-64 p-8 flex items-center justify-center">
+        <main className="flex-1 ml-0 lg:ml-64 p-4 lg:p-8 pt-20 lg:pt-8 flex items-center justify-center">
           <div className="text-center">
             <div className="w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
             <p className="text-gray-400">Loading incident details...</p>
@@ -85,7 +85,7 @@ const IncidentDetailsEnhanced: React.FC = () => {
     return (
       <div className="flex min-h-screen bg-black">
         <Sidebar />
-        <main className="flex-1 ml-64 p-8 flex items-center justify-center">
+        <main className="flex-1 ml-0 lg:ml-64 p-4 lg:p-8 pt-20 lg:pt-8 flex items-center justify-center">
           <div className="text-center">
             <AlertTriangle className="w-12 h-12 text-gray-600 mx-auto mb-4" />
             <p className="text-gray-400">Incident not found</p>
@@ -123,7 +123,7 @@ const IncidentDetailsEnhanced: React.FC = () => {
     <div className="flex min-h-screen bg-black">
       <Sidebar />
 
-      <main className="flex-1 ml-64 p-8">
+      <main className="flex-1 ml-0 lg:ml-64 p-4 lg:p-8 pt-20 lg:pt-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-4">
