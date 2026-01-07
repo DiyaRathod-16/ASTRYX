@@ -126,21 +126,21 @@ const VerificationPage: React.FC = () => {
 
       <main className="flex-1 ml-0 lg:ml-64 px-3 lg:px-8 pt-[60px] lg:pt-8 pb-[72px] lg:pb-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 gap-3">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Verification Queue</h1>
-            <p className="text-gray-400">Human-in-the-loop verification for AI-detected anomalies</p>
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 lg:mb-2">Verification Queue</h1>
+            <p className="text-xs sm:text-sm text-gray-400">Human-in-the-loop verification for AI-detected anomalies</p>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="px-4 py-2 bg-yellow-500/20 text-yellow-400 rounded-lg">
+            <div className="px-3 lg:px-4 py-1.5 lg:py-2 bg-yellow-500/20 text-yellow-400 rounded-lg text-sm">
               <span className="font-bold">{pendingCount}</span> pending review
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
           {/* Queue List */}
-          <div className="col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-4">
             {/* Filter */}
             <div className="flex items-center space-x-4 mb-4">
               <div className="flex items-center space-x-2">

@@ -186,38 +186,38 @@ const IncidentDetailsEnhanced: React.FC = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
           {/* Main Content */}
-          <div className="col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 lg:space-y-6">
             {activeTab === 'overview' && (
               <>
                 {/* Description */}
-                <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                  <h3 className="text-lg font-semibold text-white mb-4">Description</h3>
-                  <p className="text-gray-400 leading-relaxed">
+                <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
+                  <h3 className="text-base lg:text-lg font-semibold text-white mb-3 lg:mb-4">Description</h3>
+                  <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
                     {anomaly.description || 'No description provided for this anomaly.'}
                   </p>
                 </div>
 
                 {/* Map */}
-                <div className="h-[400px]">
+                <div className="h-[300px] lg:h-[400px]">
                   <InteractiveMapEnhanced selectedAnomalyId={anomaly.id} />
                 </div>
 
                 {/* Data Sources */}
-                <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                  <h3 className="text-lg font-semibold text-white mb-4">Data Sources</h3>
-                  <div className="grid grid-cols-4 gap-4">
+                <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
+                  <h3 className="text-base lg:text-lg font-semibold text-white mb-3 lg:mb-4">Data Sources</h3>
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
                     {[
                       { icon: FileText, label: 'Text', count: 3, color: 'text-blue-400' },
                       { icon: Image, label: 'Images', count: 2, color: 'text-purple-400' },
                       { icon: Mic, label: 'Audio', count: 1, color: 'text-green-400' },
                       { icon: Radio, label: 'Sensor', count: 5, color: 'text-cyan-400' }
                     ].map((source, idx) => (
-                      <div key={idx} className="bg-black/30 rounded-lg p-4 text-center">
-                        <source.icon className={`w-8 h-8 ${source.color} mx-auto mb-2`} />
-                        <div className="text-sm text-white font-medium">{source.label}</div>
-                        <div className="text-xs text-gray-500">{source.count} sources</div>
+                      <div key={idx} className="bg-black/30 rounded-lg p-3 lg:p-4 text-center">
+                        <source.icon className={`w-6 lg:w-8 h-6 lg:h-8 ${source.color} mx-auto mb-2`} />
+                        <div className="text-xs lg:text-sm text-white font-medium">{source.label}</div>
+                        <div className="text-[10px] lg:text-xs text-gray-500">{source.count} sources</div>
                       </div>
                     ))}
                   </div>
@@ -226,8 +226,8 @@ const IncidentDetailsEnhanced: React.FC = () => {
             )}
 
             {activeTab === 'analysis' && (
-              <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                <h3 className="text-lg font-semibold text-white mb-4">AI Analysis Results</h3>
+              <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
+                <h3 className="text-base lg:text-lg font-semibold text-white mb-3 lg:mb-4">AI Analysis Results</h3>
                 <div className="space-y-4">
                   <div className="p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg">
                     <h4 className="text-sm font-medium text-purple-400 mb-2">Pattern Recognition</h4>

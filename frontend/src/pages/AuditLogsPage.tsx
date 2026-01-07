@@ -166,36 +166,36 @@ const AuditLogsPage: React.FC = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-            <div className="text-2xl font-bold text-white">{logs.length}</div>
-            <div className="text-sm text-gray-400">Total Events</div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-4 lg:mb-6">
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-3 lg:p-4 border border-white/10">
+            <div className="text-lg lg:text-2xl font-bold text-white">{logs.length}</div>
+            <div className="text-xs lg:text-sm text-gray-400">Total Events</div>
           </div>
-          <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4">
-            <div className="text-2xl font-bold text-green-400">
+          <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-3 lg:p-4">
+            <div className="text-lg lg:text-2xl font-bold text-green-400">
               {logs.filter(l => l.status === 'success').length}
             </div>
-            <div className="text-sm text-gray-400">Successful</div>
+            <div className="text-xs lg:text-sm text-gray-400">Successful</div>
           </div>
-          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4">
-            <div className="text-2xl font-bold text-yellow-400">
+          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-3 lg:p-4">
+            <div className="text-lg lg:text-2xl font-bold text-yellow-400">
               {logs.filter(l => l.status === 'warning').length}
             </div>
-            <div className="text-sm text-gray-400">Warnings</div>
+            <div className="text-xs lg:text-sm text-gray-400">Warnings</div>
           </div>
-          <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4">
-            <div className="text-2xl font-bold text-red-400">
+          <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3 lg:p-4">
+            <div className="text-lg lg:text-2xl font-bold text-red-400">
               {logs.filter(l => l.status === 'error').length}
             </div>
-            <div className="text-sm text-gray-400">Errors</div>
+            <div className="text-xs lg:text-sm text-gray-400">Errors</div>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-white/10 mb-6">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-black/30 backdrop-blur-sm rounded-xl p-3 lg:p-4 border border-white/10 mb-4 lg:mb-6">
+          <div className="flex flex-col lg:flex-row lg:flex-wrap items-stretch lg:items-center gap-3 lg:gap-4">
             {/* Search */}
-            <div className="flex-1 min-w-[300px]">
+            <div className="flex-1 lg:min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
@@ -203,7 +203,7 @@ const AuditLogsPage: React.FC = () => {
                   placeholder="Search logs..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-black/30 text-white pl-10 pr-4 py-2 rounded-lg border border-white/10 focus:border-cyan-500 focus:outline-none"
+                  className="w-full bg-black/30 text-white pl-10 pr-4 py-2 rounded-lg border border-white/10 focus:border-cyan-500 focus:outline-none text-sm"
                 />
               </div>
             </div>

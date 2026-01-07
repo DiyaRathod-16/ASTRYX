@@ -76,46 +76,46 @@ const AboutPage: React.FC = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 mb-8 lg:mb-12">
           {stats.map((stat, idx) => (
-            <div key={idx} className="bg-gray-950 rounded-xl p-6 border border-gray-700 text-center">
-              <div className="text-3xl font-bold text-cyan-400 mb-2">
+            <div key={idx} className="bg-gray-950 rounded-xl p-4 lg:p-6 border border-gray-700 text-center">
+              <div className="text-xl lg:text-3xl font-bold text-cyan-400 mb-1 lg:mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm text-gray-300">{stat.label}</div>
+              <div className="text-xs lg:text-sm text-gray-300">{stat.label}</div>
             </div>
           ))}
         </div>
 
         {/* Features */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">Core Capabilities</h2>
-          <div className="grid grid-cols-3 gap-6">
+        <div className="mb-8 lg:mb-12">
+          <h2 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6 text-center">Core Capabilities</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
             {features.map((feature, idx) => (
-              <div key={idx} className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-cyan-500/50 transition-all">
-                <feature.icon className="w-10 h-10 text-cyan-400 mb-4" />
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-gray-400">{feature.description}</p>
+              <div key={idx} className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10 hover:border-cyan-500/50 transition-all">
+                <feature.icon className="w-8 lg:w-10 h-8 lg:h-10 text-cyan-400 mb-3 lg:mb-4" />
+                <h3 className="text-base lg:text-lg font-semibold text-white mb-1 lg:mb-2">{feature.title}</h3>
+                <p className="text-xs lg:text-sm text-gray-400">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Tech Stack */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">Technology Stack</h2>
-          <div className="grid grid-cols-4 gap-6">
+        <div className="mb-8 lg:mb-12">
+          <h2 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6 text-center">Technology Stack</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
             {techStack.map((tech, idx) => (
-              <div key={idx} className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                <div className="flex items-center space-x-2 mb-4">
-                  <Code className="w-5 h-5 text-purple-400" />
-                  <h3 className="text-lg font-semibold text-white">{tech.category}</h3>
+              <div key={idx} className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
+                <div className="flex items-center space-x-2 mb-3 lg:mb-4">
+                  <Code className="w-4 lg:w-5 h-4 lg:h-5 text-purple-400" />
+                  <h3 className="text-sm lg:text-lg font-semibold text-white">{tech.category}</h3>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1 lg:space-y-2">
                   {tech.items.map((item, iidx) => (
                     <div key={iidx} className="flex items-center space-x-2">
-                      <Star className="w-3 h-3 text-cyan-400" />
-                      <span className="text-sm text-gray-400">{item}</span>
+                      <Star className="w-2 lg:w-3 h-2 lg:h-3 text-cyan-400" />
+                      <span className="text-xs lg:text-sm text-gray-400">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -125,9 +125,9 @@ const AboutPage: React.FC = () => {
         </div>
 
         {/* Architecture */}
-        <div className="bg-black/30 backdrop-blur-sm rounded-xl p-8 border border-white/10 mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">System Architecture</h2>
-          <div className="grid grid-cols-4 gap-4">
+        <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-8 border border-white/10 mb-8 lg:mb-12">
+          <h2 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6">System Architecture</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
             {[
               { step: 1, title: 'Data Ingestion', desc: 'Multi-modal sensors capture global data streams', color: 'from-cyan-500 to-blue-500' },
               { step: 2, title: 'AI Analysis', desc: 'Gemini processes data through specialized agents', color: 'from-blue-500 to-purple-500' },
@@ -135,15 +135,15 @@ const AboutPage: React.FC = () => {
               { step: 4, title: 'Autonomous Response', desc: 'Opus workflows trigger mitigation protocols', color: 'from-pink-500 to-red-500' }
             ].map((item, idx) => (
               <div key={idx} className="relative">
-                <div className="bg-black/40 rounded-xl p-5 border border-white/10">
-                  <div className={`w-10 h-10 bg-gradient-to-br ${item.color} rounded-lg flex items-center justify-center mb-3`}>
-                    <span className="text-white font-bold">{item.step}</span>
+                <div className="bg-black/40 rounded-xl p-3 lg:p-5 border border-white/10">
+                  <div className={`w-8 lg:w-10 h-8 lg:h-10 bg-gradient-to-br ${item.color} rounded-lg flex items-center justify-center mb-2 lg:mb-3`}>
+                    <span className="text-white font-bold text-sm lg:text-base">{item.step}</span>
                   </div>
-                  <h3 className="text-white font-semibold mb-1">{item.title}</h3>
-                  <p className="text-xs text-gray-400">{item.desc}</p>
+                  <h3 className="text-white font-semibold mb-1 text-sm lg:text-base">{item.title}</h3>
+                  <p className="text-[10px] lg:text-xs text-gray-400">{item.desc}</p>
                 </div>
                 {idx < 3 && (
-                  <ChevronRight className="absolute top-1/2 -right-3 transform -translate-y-1/2 w-6 h-6 text-gray-600" />
+                  <ChevronRight className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 w-6 h-6 text-gray-600" />
                 )}
               </div>
             ))}
@@ -151,9 +151,9 @@ const AboutPage: React.FC = () => {
         </div>
 
         {/* Version Info */}
-        <div className="grid grid-cols-2 gap-6 mb-12">
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-            <h3 className="text-lg font-semibold text-white mb-4">Version Information</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-8 lg:mb-12">
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
+            <h3 className="text-base lg:text-lg font-semibold text-white mb-3 lg:mb-4">Version Information</h3>
             <div className="space-y-3">
               <div className="flex justify-between">
                 <span className="text-gray-400">Version</span>

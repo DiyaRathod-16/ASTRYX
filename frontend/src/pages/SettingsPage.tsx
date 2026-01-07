@@ -129,27 +129,27 @@ const SettingsPage: React.FC = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-4 gap-6">
-          {/* Tabs */}
-          <div className="space-y-2">
+        <div className="flex flex-col lg:grid lg:grid-cols-4 gap-4 lg:gap-6">
+          {/* Tabs - Horizontal scroll on mobile */}
+          <div className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 lg:space-y-2 -mx-3 px-3 lg:mx-0 lg:px-0">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                className={`flex-shrink-0 flex items-center space-x-2 lg:space-x-3 px-3 lg:px-4 py-2 lg:py-3 rounded-lg transition-all whitespace-nowrap ${
                   activeTab === tab.id 
                     ? 'bg-cyan-500/20 text-cyan-400' 
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
               >
-                <tab.icon className="w-5 h-5" />
-                <span>{tab.label}</span>
+                <tab.icon className="w-4 lg:w-5 h-4 lg:h-5" />
+                <span className="text-sm lg:text-base">{tab.label}</span>
               </button>
             ))}
           </div>
 
           {/* Content */}
-          <div className="col-span-3">
+          <div className="lg:col-span-3">
             {activeTab === 'general' && (
               <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10 space-y-6">
                 <h3 className="text-lg font-semibold text-white mb-4">General Settings</h3>

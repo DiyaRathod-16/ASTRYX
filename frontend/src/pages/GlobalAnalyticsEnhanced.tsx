@@ -55,18 +55,18 @@ const GlobalAnalyticsEnhanced: React.FC = () => {
 
       <main className="flex-1 ml-0 lg:ml-64 px-3 lg:px-8 pt-[60px] lg:pt-8 pb-[72px] lg:pb-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 gap-3">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Global Analytics</h1>
-            <p className="text-gray-400">Comprehensive analytics and reporting dashboard</p>
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 lg:mb-2">Global Analytics</h1>
+            <p className="text-xs sm:text-sm text-gray-400">Comprehensive analytics and reporting dashboard</p>
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-2 lg:space-x-3">
             <div className="flex items-center space-x-1 bg-black/30 rounded-lg p-1">
               {(['24h', '7d', '30d', '90d'] as const).map((range) => (
                 <button
                   key={range}
                   onClick={() => setTimeRange(range)}
-                  className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
+                  className={`px-2 lg:px-3 py-1 lg:py-1.5 rounded-lg text-xs lg:text-sm transition-all ${
                     timeRange === range 
                       ? 'bg-cyan-500/20 text-cyan-400' 
                       : 'text-gray-400 hover:text-white'
@@ -76,56 +76,56 @@ const GlobalAnalyticsEnhanced: React.FC = () => {
                 </button>
               ))}
             </div>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-purple-500/20 text-purple-400 rounded-lg hover:bg-purple-500/30 transition-all">
-              <Download className="w-4 h-4" />
+            <button className="flex items-center space-x-1 lg:space-x-2 px-3 lg:px-4 py-1.5 lg:py-2 bg-purple-500/20 text-purple-400 rounded-lg hover:bg-purple-500/30 transition-all text-xs lg:text-sm">
+              <Download className="w-3 lg:w-4 h-3 lg:h-4" />
               <span>Export</span>
             </button>
           </div>
         </div>
 
         {/* Top Stats */}
-        <div className="grid grid-cols-4 gap-6 mb-8">
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 mb-6 lg:mb-8">
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
             <div className="flex items-center justify-between mb-2">
-              <BarChart3 className="w-8 h-8 text-cyan-400" />
-              <span className="text-xs text-green-400">+12%</span>
+              <BarChart3 className="w-6 lg:w-8 h-6 lg:h-8 text-cyan-400" />
+              <span className="text-[10px] lg:text-xs text-green-400">+12%</span>
             </div>
-            <div className="text-3xl font-bold text-white">{analyticsData.totalAnomalies.toLocaleString()}</div>
-            <div className="text-sm text-gray-400">Total Anomalies</div>
+            <div className="text-xl lg:text-3xl font-bold text-white">{analyticsData.totalAnomalies.toLocaleString()}</div>
+            <div className="text-xs lg:text-sm text-gray-400">Total Anomalies</div>
           </div>
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
             <div className="flex items-center justify-between mb-2">
-              <Activity className="w-8 h-8 text-green-400" />
-              <span className="text-xs text-green-400">-8%</span>
+              <Activity className="w-6 lg:w-8 h-6 lg:h-8 text-green-400" />
+              <span className="text-[10px] lg:text-xs text-green-400">-8%</span>
             </div>
-            <div className="text-3xl font-bold text-white">{analyticsData.avgResponseTime}</div>
-            <div className="text-sm text-gray-400">Avg Response Time</div>
+            <div className="text-xl lg:text-3xl font-bold text-white">{analyticsData.avgResponseTime}</div>
+            <div className="text-xs lg:text-sm text-gray-400">Avg Response Time</div>
           </div>
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
             <div className="flex items-center justify-between mb-2">
-              <TrendingUp className="w-8 h-8 text-purple-400" />
-              <span className="text-xs text-green-400">+2.1%</span>
+              <TrendingUp className="w-6 lg:w-8 h-6 lg:h-8 text-purple-400" />
+              <span className="text-[10px] lg:text-xs text-green-400">+2.1%</span>
             </div>
-            <div className="text-3xl font-bold text-white">{analyticsData.swarmAccuracy}%</div>
-            <div className="text-sm text-gray-400">Swarm Accuracy</div>
+            <div className="text-xl lg:text-3xl font-bold text-white">{analyticsData.swarmAccuracy}%</div>
+            <div className="text-xs lg:text-sm text-gray-400">Swarm Accuracy</div>
           </div>
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
             <div className="flex items-center justify-between mb-2">
-              <Globe className="w-8 h-8 text-orange-400" />
+              <Globe className="w-6 lg:w-8 h-6 lg:h-8 text-orange-400" />
             </div>
-            <div className="text-3xl font-bold text-white">{analyticsData.regionsMonitored}</div>
-            <div className="text-sm text-gray-400">Regions Monitored</div>
+            <div className="text-xl lg:text-3xl font-bold text-white">{analyticsData.regionsMonitored}</div>
+            <div className="text-xs lg:text-sm text-gray-400">Regions Monitored</div>
           </div>
         </div>
 
         {/* Charts Row */}
-        <div className="grid grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 mb-6 lg:mb-8">
           {/* Trend Chart */}
-          <div className="col-span-2 bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-            <div className="flex items-center justify-between mb-6">
+          <div className="lg:col-span-2 bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
+            <div className="flex items-center justify-between mb-4 lg:mb-6">
               <div className="flex items-center space-x-2">
-                <LineChart className="w-5 h-5 text-cyan-400" />
-                <h3 className="text-lg font-semibold text-white">Anomaly Trend</h3>
+                <LineChart className="w-4 lg:w-5 h-4 lg:h-5 text-cyan-400" />
+                <h3 className="text-base lg:text-lg font-semibold text-white">Anomaly Trend</h3>
               </div>
             </div>
             <div className="flex items-end justify-between h-48 px-2">
@@ -148,10 +148,10 @@ const GlobalAnalyticsEnhanced: React.FC = () => {
           </div>
 
           {/* Severity Breakdown */}
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-            <div className="flex items-center space-x-2 mb-6">
-              <PieChart className="w-5 h-5 text-purple-400" />
-              <h3 className="text-lg font-semibold text-white">Severity Distribution</h3>
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
+            <div className="flex items-center space-x-2 mb-4 lg:mb-6">
+              <PieChart className="w-4 lg:w-5 h-4 lg:h-5 text-purple-400" />
+              <h3 className="text-base lg:text-lg font-semibold text-white">Severity Distribution</h3>
             </div>
             <div className="space-y-4">
               {analyticsData.severityBreakdown.map((item, idx) => (
@@ -173,18 +173,18 @@ const GlobalAnalyticsEnhanced: React.FC = () => {
         </div>
 
         {/* Map and Risk */}
-        <div className="grid grid-cols-3 gap-6 mb-8">
-          <div className="col-span-2 h-[400px]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 mb-6 lg:mb-8">
+          <div className="lg:col-span-2 h-[300px] lg:h-[400px]">
             <InteractiveMapEnhanced />
           </div>
           <GlobalRiskScoring />
         </div>
 
         {/* Bottom Row */}
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
           {/* Top Regions */}
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-            <h3 className="text-lg font-semibold text-white mb-4">Top Regions</h3>
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
+            <h3 className="text-base lg:text-lg font-semibold text-white mb-3 lg:mb-4">Top Regions</h3>
             <div className="space-y-3">
               {analyticsData.topRegions.map((region, idx) => (
                 <div key={idx} className="flex items-center justify-between p-3 bg-black/30 rounded-lg">
@@ -204,8 +204,8 @@ const GlobalAnalyticsEnhanced: React.FC = () => {
           </div>
 
           {/* Source Breakdown */}
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-            <h3 className="text-lg font-semibold text-white mb-4">Data Sources</h3>
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-white/10">
+            <h3 className="text-base lg:text-lg font-semibold text-white mb-3 lg:mb-4">Data Sources</h3>
             <div className="space-y-4">
               {analyticsData.sourceBreakdown.map((source, idx) => (
                 <div key={idx}>

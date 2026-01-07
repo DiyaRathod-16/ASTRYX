@@ -121,30 +121,30 @@ const IncidentsListPage: React.FC = () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-4 gap-4 mb-8">
-          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-            <div className="text-2xl font-bold text-white">{stats.total}</div>
-            <div className="text-sm text-gray-400">Total Incidents</div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-6 lg:mb-8">
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-3 lg:p-4 border border-white/10">
+            <div className="text-lg lg:text-2xl font-bold text-white">{stats.total}</div>
+            <div className="text-xs lg:text-sm text-gray-400">Total Incidents</div>
           </div>
-          <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4">
-            <div className="text-2xl font-bold text-red-400">{stats.critical}</div>
-            <div className="text-sm text-gray-400">Critical</div>
+          <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3 lg:p-4">
+            <div className="text-lg lg:text-2xl font-bold text-red-400">{stats.critical}</div>
+            <div className="text-xs lg:text-sm text-gray-400">Critical</div>
           </div>
-          <div className="bg-orange-500/10 border border-orange-500/30 rounded-xl p-4">
-            <div className="text-2xl font-bold text-orange-400">{stats.high}</div>
-            <div className="text-sm text-gray-400">High Priority</div>
+          <div className="bg-orange-500/10 border border-orange-500/30 rounded-xl p-3 lg:p-4">
+            <div className="text-lg lg:text-2xl font-bold text-orange-400">{stats.high}</div>
+            <div className="text-xs lg:text-sm text-gray-400">High Priority</div>
           </div>
-          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4">
-            <div className="text-2xl font-bold text-yellow-400">{stats.pending}</div>
-            <div className="text-sm text-gray-400">Pending Review</div>
+          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-3 lg:p-4">
+            <div className="text-lg lg:text-2xl font-bold text-yellow-400">{stats.pending}</div>
+            <div className="text-xs lg:text-sm text-gray-400">Pending Review</div>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-white/10 mb-6">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="bg-black/30 backdrop-blur-sm rounded-xl p-3 lg:p-4 border border-white/10 mb-4 lg:mb-6">
+          <div className="flex flex-col lg:flex-row lg:flex-wrap items-stretch lg:items-center gap-3 lg:gap-4">
             {/* Search */}
-            <div className="flex-1 min-w-[300px]">
+            <div className="flex-1 lg:min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
@@ -152,7 +152,7 @@ const IncidentsListPage: React.FC = () => {
                   placeholder="Search incidents..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-black/30 text-white pl-10 pr-4 py-2 rounded-lg border border-white/10 focus:border-cyan-500 focus:outline-none"
+                  className="w-full bg-black/30 text-white pl-10 pr-4 py-2 rounded-lg border border-white/10 focus:border-cyan-500 focus:outline-none text-sm"
                 />
               </div>
             </div>
@@ -161,7 +161,7 @@ const IncidentsListPage: React.FC = () => {
             <select
               value={severityFilter}
               onChange={(e) => setSeverityFilter(e.target.value)}
-              className="bg-black/30 text-white px-4 py-2 rounded-lg border border-white/10 focus:border-cyan-500 focus:outline-none"
+              className="bg-black/30 text-white px-4 py-2 rounded-lg border border-white/10 focus:border-cyan-500 focus:outline-none text-sm"
             >
               <option value="all">All Severities</option>
               <option value="critical">Critical</option>
