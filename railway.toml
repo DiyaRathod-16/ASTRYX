@@ -1,0 +1,11 @@
+# Railway configuration for ASTRYX monorepo
+# This project contains two services that should be deployed separately
+
+# To deploy this monorepo on Railway:
+# 1. Create a new project
+# 2. Add service for Backend: Set "Root Directory" to "backend"
+# 3. Add service for Frontend: Set "Root Directory" to "frontend"
+
+# See individual service configs in:
+# - backend/railway.json
+# - frontend/railway.json
