@@ -105,14 +105,19 @@ app.use((req, res) => {
 // Database connection and server startup
 async function startServer() {
   try {
-    // Connect to database
-    await sequelize.authenticate();
-    logger.info('✅ Database connection established');
+    // Try to connect to database (but don't fail if unavailable)
+    try {
+      await sequelize.authenticate();
+      logger.info('✅ Database connection established');
 
-    // Sync models (use migrations in production)
-    if (process.env.NODE_ENV === 'development') {
-      await sequelize.sync({ alter: true });
-      logger.info('✅ Database models synchronized');
+      // Sync models (use migrations in production)
+      if (process.env.NODE_ENV !== 'production') {
+        await sequelize.sync({ alter: true });
+        logger.info('✅ Database models synchronized');
+      }
+    } catch (dbError) {
+      logger.warn('⚠️ Database connection failed, running in limited mode');
+      logger.warn('   Set DATABASE_URL environment variable to enable database');
     }
 
     // Start HTTP server

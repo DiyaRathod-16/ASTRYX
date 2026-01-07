@@ -8,9 +8,14 @@ router.get('/', async (req: Request, res: Response) => {
   const startTime = Date.now();
   
   try {
-    // Check database connection
-    await sequelize.authenticate();
-    const dbStatus = 'healthy';
+    // Check database connection (don't fail if db not available)
+    let dbStatus = 'not_configured';
+    try {
+      await sequelize.authenticate();
+      dbStatus = 'healthy';
+    } catch (dbError) {
+      dbStatus = 'unavailable';
+    }
     
     // Get WebSocket status
     const wsService = req.app.get('wsService') as WebSocketService | undefined;
