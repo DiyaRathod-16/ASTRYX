@@ -206,9 +206,9 @@ const InteractiveMapEnhanced: React.FC<InteractiveMapEnhancedProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full rounded-xl overflow-hidden border border-gray-700">
+    <div className="relative w-full h-full rounded-xl overflow-hidden border border-gray-700" style={{ zIndex: 1 }}>
       {loading && (
-        <div className="absolute inset-0 bg-black flex items-center justify-center z-50">
+        <div className="absolute inset-0 bg-black flex items-center justify-center z-10">
           <div className="flex items-center space-x-3">
             <div className="w-6 h-6 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin" />
             <span className="text-white">Loading anomalies...</span>
@@ -216,10 +216,10 @@ const InteractiveMapEnhanced: React.FC<InteractiveMapEnhancedProps> = ({
         </div>
       )}
       
-      <div ref={mapRef} className="w-full h-full" style={{ minHeight: '400px' }} />
+      <div ref={mapRef} className="w-full h-full" style={{ minHeight: '300px', zIndex: 1 }} />
       
-      {/* Legend */}
-      <div className="absolute bottom-4 left-4 bg-black border border-gray-700 rounded-lg p-3 z-40">
+      {/* Legend - Hidden on mobile */}
+      <div className="absolute bottom-4 left-4 bg-black border border-gray-700 rounded-lg p-3 z-10 hidden sm:block">
         <div className="text-xs text-gray-300 mb-2">Severity Legend</div>
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
@@ -242,9 +242,9 @@ const InteractiveMapEnhanced: React.FC<InteractiveMapEnhancedProps> = ({
       </div>
 
       {/* Stats Overlay */}
-      <div className="absolute top-4 right-4 bg-black border border-gray-700 rounded-lg p-3 z-40">
-        <div className="text-xs text-gray-300 mb-1">Active Anomalies</div>
-        <div className="text-2xl font-bold text-white">{anomalies.length}</div>
+      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-black border border-gray-700 rounded-lg p-2 sm:p-3 z-10">
+        <div className="text-[10px] sm:text-xs text-gray-300 mb-0.5 sm:mb-1">Active Anomalies</div>
+        <div className="text-lg sm:text-2xl font-bold text-white">{anomalies.length}</div>
       </div>
 
       <style>{`

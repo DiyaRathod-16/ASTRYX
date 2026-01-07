@@ -137,3 +137,27 @@ body {
 .text-white {
   color: #ffffff !important;
 }
+
+/* Mobile layout fixes */
+@media (max-width: 1023px) {
+  /* Ensure main content doesn't overlap fixed elements */
+  .mobile-safe-area {
+    padding-top: 56px !important;  /* Mobile header height */
+    padding-bottom: 64px !important; /* Bottom nav height */
+  }
+  
+  /* Force map to respect boundaries */
+  .leaflet-container {
+    z-index: 1 !important;
+  }
+  
+  /* Ensure cards don't overlap bottom nav */
+  .leaflet-control-container {
+    z-index: 1 !important;
+  }
+}
+
+/* Prevent body scroll when modal is open */
+body.menu-open {
+  overflow: hidden;
+}

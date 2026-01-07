@@ -45,8 +45,8 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {/* Mobile Header */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-black/95 backdrop-blur-sm border-b border-gray-800 z-50 flex items-center justify-between px-4 safe-area-top">
+      {/* Mobile Header - Solid fixed position */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-black border-b border-gray-800 z-[100] flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
             <Zap className="w-4 h-4 text-black" />
@@ -58,22 +58,22 @@ const Sidebar: React.FC = () => {
         </div>
       </header>
 
-      {/* Mobile Bottom Navigation */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-black/95 backdrop-blur-sm border-t border-gray-800 z-50 flex items-center justify-around px-2 safe-area-bottom">
+      {/* Mobile Bottom Navigation - Solid fixed, high z-index */}
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-black border-t border-gray-700 z-[100] flex items-center justify-around px-1">
         {bottomNavItems.map((item) => {
           const active = isActive(item.path);
           return (
             <NavLink
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all min-w-[60px] ${
+              className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all min-w-[56px] ${
                 active
-                  ? 'text-cyan-400 bg-cyan-500/10'
-                  : 'text-gray-500 hover:text-gray-300'
+                  ? 'text-cyan-400 bg-cyan-500/15'
+                  : 'text-gray-500'
               }`}
             >
-              <item.icon className={`w-5 h-5 mb-1 ${active ? 'text-cyan-400' : ''}`} />
-              <span className="text-[10px] font-medium">{item.shortLabel}</span>
+              <item.icon className={`w-5 h-5 mb-0.5 ${active ? 'text-cyan-400' : ''}`} />
+              <span className="text-[9px] font-medium">{item.shortLabel}</span>
             </NavLink>
           );
         })}
@@ -81,27 +81,27 @@ const Sidebar: React.FC = () => {
         {/* More button */}
         <button
           onClick={() => setMobileMenuOpen(true)}
-          className={`flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all min-w-[60px] ${
+          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all min-w-[56px] ${
             mobileMenuOpen || moreNavItems.some(item => isActive(item.path))
-              ? 'text-cyan-400 bg-cyan-500/10'
-              : 'text-gray-500 hover:text-gray-300'
+              ? 'text-cyan-400 bg-cyan-500/15'
+              : 'text-gray-500'
           }`}
         >
-          <MoreHorizontal className="w-5 h-5 mb-1" />
-          <span className="text-[10px] font-medium">More</span>
+          <MoreHorizontal className="w-5 h-5 mb-0.5" />
+          <span className="text-[9px] font-medium">More</span>
         </button>
       </nav>
 
       {/* Mobile More Menu Overlay */}
       {mobileMenuOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[60]"
+          className="lg:hidden fixed inset-0 bg-black/90 z-[110]"
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
 
       {/* Mobile More Menu - Bottom Sheet */}
-      <div className={`lg:hidden fixed left-0 right-0 bottom-0 bg-gray-900 border-t border-gray-700 rounded-t-3xl z-[70] transform transition-transform duration-300 ease-out ${mobileMenuOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div className={`lg:hidden fixed left-0 right-0 bottom-0 bg-gray-900 border-t border-gray-600 rounded-t-2xl z-[120] transform transition-transform duration-300 ease-out ${mobileMenuOpen ? 'translate-y-0' : 'translate-y-full'}`}>
         {/* Handle */}
         <div className="flex justify-center pt-3 pb-2">
           <div className="w-10 h-1 bg-gray-600 rounded-full" />

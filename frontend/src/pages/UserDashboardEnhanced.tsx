@@ -107,7 +107,7 @@ const UserDashboardEnhanced: React.FC = () => {
     <div className="min-h-screen bg-black">
       <Sidebar />
       
-      <main className="ml-0 lg:ml-64 p-4 lg:p-8 pt-16 lg:pt-8 pb-20 lg:pb-8">
+      <main className="ml-0 lg:ml-64 px-3 lg:px-8 pt-[60px] lg:pt-8 pb-[72px] lg:pb-8">
         {/* Header */}
         <header className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 lg:mb-6 gap-3">
           <div>

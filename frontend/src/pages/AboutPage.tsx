@@ -59,7 +59,7 @@ const AboutPage: React.FC = () => {
     <div className="flex min-h-screen bg-black">
       <Sidebar />
 
-      <main className="flex-1 ml-0 lg:ml-64 p-4 lg:p-8 pt-16 lg:pt-8 pb-20 lg:pb-8">
+      <main className="flex-1 ml-0 lg:ml-64 px-3 lg:px-8 pt-[60px] lg:pt-8 pb-[72px] lg:pb-8">
         {/* Hero */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center space-x-3 mb-6">
