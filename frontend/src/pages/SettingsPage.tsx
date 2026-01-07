@@ -100,7 +100,7 @@ const SettingsPage: React.FC = () => {
     <div className="flex min-h-screen bg-black">
       <Sidebar />
 
-      <main className="flex-1 ml-0 lg:ml-64 px-3 lg:px-8 pt-[60px] lg:pt-8 pb-[72px] lg:pb-8">
+      <main className="flex-1 ml-0 lg:ml-64 px-3 lg:px-8 pt-[60px] lg:pt-8 pb-[72px] lg:pb-8 overflow-x-hidden">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 gap-3">
           <div>
@@ -328,7 +328,7 @@ const SettingsPage: React.FC = () => {
                   </div>
 
                   {/* AI Model Selection */}
-                  <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                     <div className="flex items-center space-x-3">
                       <Cpu className="w-5 h-5 text-purple-400" />
                       <div>
@@ -339,7 +339,7 @@ const SettingsPage: React.FC = () => {
                     <select
                       value={settings.aiModel}
                       onChange={(e) => setSettings(prev => ({ ...prev, aiModel: e.target.value }))}
-                      className="bg-black/50 text-white px-4 py-2 rounded-lg border border-white/10"
+                      className="w-full sm:w-auto bg-black/50 text-white px-3 py-1.5 rounded-lg border border-white/10 text-sm"
                     >
                       <option value="gemini-1.5-pro">Gemini 1.5 Pro (Recommended)</option>
                       <option value="gemini-1.5-flash">Gemini 1.5 Flash (Fast)</option>
@@ -353,7 +353,7 @@ const SettingsPage: React.FC = () => {
                 <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10 space-y-6">
                   <h3 className="text-lg font-semibold text-white">AI Features</h3>
                   
-                  <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                     <div className="flex items-center space-x-3">
                       <Sparkles className="w-5 h-5 text-cyan-400" />
                       <div>
@@ -363,13 +363,13 @@ const SettingsPage: React.FC = () => {
                     </div>
                     <button
                       onClick={() => setSettings(prev => ({ ...prev, enableAI: !prev.enableAI }))}
-                      className={`w-12 h-6 rounded-full transition-all ${settings.enableAI ? 'bg-cyan-500' : 'bg-gray-600'}`}
+                      className={`w-10 h-5 rounded-full flex-shrink-0 transition-all ${settings.enableAI ? 'bg-cyan-500' : 'bg-gray-600'}`}
                     >
-                      <div className={`w-5 h-5 rounded-full bg-white transition-all ${settings.enableAI ? 'translate-x-6' : 'translate-x-0.5'}`} />
+                      <div className={`w-5 h-5 rounded-full bg-white transition-all ${settings.enableAI ? 'translate-x-5' : 'translate-x-0.5'}`} />
                     </button>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                     <div className="flex items-center space-x-3">
                       <RefreshCw className="w-5 h-5 text-green-400" />
                       <div>
@@ -379,9 +379,9 @@ const SettingsPage: React.FC = () => {
                     </div>
                     <button
                       onClick={() => setSettings(prev => ({ ...prev, autoAnalysis: !prev.autoAnalysis }))}
-                      className={`w-12 h-6 rounded-full transition-all ${settings.autoAnalysis ? 'bg-green-500' : 'bg-gray-600'}`}
+                      className={`w-10 h-5 rounded-full flex-shrink-0 transition-all ${settings.autoAnalysis ? 'bg-green-500' : 'bg-gray-600'}`}
                     >
-                      <div className={`w-5 h-5 rounded-full bg-white transition-all ${settings.autoAnalysis ? 'translate-x-6' : 'translate-x-0.5'}`} />
+                      <div className={`w-5 h-5 rounded-full bg-white transition-all ${settings.autoAnalysis ? 'translate-x-5' : 'translate-x-0.5'}`} />
                     </button>
                   </div>
                 </div>
@@ -419,7 +419,7 @@ const SettingsPage: React.FC = () => {
                   { key: 'pushNotifications', icon: Bell, label: 'Push Notifications', desc: 'Browser push notifications' },
                   { key: 'criticalOnly', icon: Shield, label: 'Critical Only', desc: 'Only notify for critical alerts' }
                 ].map((item) => (
-                  <div key={item.key} className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                  <div key={item.key} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                     <div className="flex items-center space-x-3">
                       <item.icon className="w-5 h-5 text-gray-400" />
                       <div>
@@ -429,18 +429,18 @@ const SettingsPage: React.FC = () => {
                     </div>
                     <button
                       onClick={() => setSettings(prev => ({ ...prev, [item.key]: !prev[item.key as keyof typeof prev] }))}
-                      className={`w-12 h-6 rounded-full transition-all ${
+                      className={`w-10 h-5 rounded-full flex-shrink-0 transition-all ${
                         settings[item.key as keyof typeof settings] ? 'bg-cyan-500' : 'bg-gray-600'
                       }`}
                     >
                       <div className={`w-5 h-5 rounded-full bg-white transition-all ${
-                        settings[item.key as keyof typeof settings] ? 'translate-x-6' : 'translate-x-0.5'
+                        settings[item.key as keyof typeof settings] ? 'translate-x-5' : 'translate-x-0.5'
                       }`} />
                     </button>
                   </div>
                 ))}
 
-                <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div>
                     <div className="text-white font-medium">Digest Frequency</div>
                     <div className="text-sm text-gray-500">How often to receive summary emails</div>
@@ -463,7 +463,7 @@ const SettingsPage: React.FC = () => {
               <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10 space-y-6">
                 <h3 className="text-lg font-semibold text-white mb-4">Security Settings</h3>
                 
-                <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div className="flex items-center space-x-3">
                     <Key className="w-5 h-5 text-green-400" />
                     <div>
@@ -473,13 +473,13 @@ const SettingsPage: React.FC = () => {
                   </div>
                   <button
                     onClick={() => setSettings(prev => ({ ...prev, twoFactorAuth: !prev.twoFactorAuth }))}
-                    className={`w-12 h-6 rounded-full transition-all ${settings.twoFactorAuth ? 'bg-green-500' : 'bg-gray-600'}`}
+                    className={`w-10 h-5 rounded-full flex-shrink-0 transition-all ${settings.twoFactorAuth ? 'bg-green-500' : 'bg-gray-600'}`}
                   >
-                    <div className={`w-5 h-5 rounded-full bg-white transition-all ${settings.twoFactorAuth ? 'translate-x-6' : 'translate-x-0.5'}`} />
+                    <div className={`w-5 h-5 rounded-full bg-white transition-all ${settings.twoFactorAuth ? 'translate-x-5' : 'translate-x-0.5'}`} />
                   </button>
                 </div>
 
-                <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div className="flex items-center space-x-3">
                     <Lock className="w-5 h-5 text-purple-400" />
                     <div>
@@ -525,7 +525,7 @@ const SettingsPage: React.FC = () => {
               <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10 space-y-6">
                 <h3 className="text-lg font-semibold text-white mb-4">Data Management</h3>
                 
-                <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div>
                     <div className="text-white font-medium">Data Retention</div>
                     <div className="text-sm text-gray-500">How long to keep historical data</div>
@@ -543,7 +543,7 @@ const SettingsPage: React.FC = () => {
                   </select>
                 </div>
 
-                <div className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                   <div className="flex items-center space-x-3">
                     <Database className="w-5 h-5 text-cyan-400" />
                     <div>
@@ -553,9 +553,9 @@ const SettingsPage: React.FC = () => {
                   </div>
                   <button
                     onClick={() => setSettings(prev => ({ ...prev, autoBackup: !prev.autoBackup }))}
-                    className={`w-12 h-6 rounded-full transition-all ${settings.autoBackup ? 'bg-cyan-500' : 'bg-gray-600'}`}
+                    className={`w-10 h-5 rounded-full flex-shrink-0 transition-all ${settings.autoBackup ? 'bg-cyan-500' : 'bg-gray-600'}`}
                   >
-                    <div className={`w-5 h-5 rounded-full bg-white transition-all ${settings.autoBackup ? 'translate-x-6' : 'translate-x-0.5'}`} />
+                    <div className={`w-5 h-5 rounded-full bg-white transition-all ${settings.autoBackup ? 'translate-x-5' : 'translate-x-0.5'}`} />
                   </button>
                 </div>
 
@@ -583,7 +583,7 @@ const SettingsPage: React.FC = () => {
                   { name: 'Jira', status: 'not connected', color: 'bg-gray-500/20 text-gray-400' },
                   { name: 'ServiceNow', status: 'not connected', color: 'bg-gray-500/20 text-gray-400' }
                 ].map((integration, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-4 bg-black/30 rounded-lg">
+                  <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 lg:p-4 bg-black/30 rounded-lg">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center">
                         <Globe className="w-5 h-5 text-gray-400" />

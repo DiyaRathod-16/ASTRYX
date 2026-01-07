@@ -146,20 +146,20 @@ const AuditLogsPage: React.FC = () => {
     <div className="flex min-h-screen bg-black">
       <Sidebar />
 
-      <main className="flex-1 ml-0 lg:ml-64 px-3 lg:px-8 pt-[60px] lg:pt-8 pb-[72px] lg:pb-8">
+      <main className="flex-1 ml-0 lg:ml-64 px-3 lg:px-8 pt-[60px] lg:pt-8 pb-[72px] lg:pb-8 overflow-x-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 gap-3">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Audit Logs</h1>
-            <p className="text-gray-400">Track all system activities and user actions</p>
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1">Audit Logs</h1>
+            <p className="text-xs sm:text-sm text-gray-400">Track all system activities and user actions</p>
           </div>
-          <div className="flex items-center space-x-3">
-            <button className="flex items-center space-x-2 px-4 py-2 bg-black/30 text-gray-400 rounded-lg hover:bg-black/50 transition-all">
-              <RefreshCw className="w-4 h-4" />
+          <div className="flex items-center space-x-2">
+            <button className="flex items-center space-x-1 px-3 py-1.5 bg-black/30 text-gray-400 rounded-lg hover:bg-black/50 transition-all text-sm">
+              <RefreshCw className="w-3.5 h-3.5" />
               <span>Refresh</span>
             </button>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-cyan-500/20 text-cyan-400 rounded-lg hover:bg-cyan-500/30 transition-all">
-              <Download className="w-4 h-4" />
+            <button className="flex items-center space-x-1 px-3 py-1.5 bg-cyan-500/20 text-cyan-400 rounded-lg hover:bg-cyan-500/30 transition-all text-sm">
+              <Download className="w-3.5 h-3.5" />
               <span>Export</span>
             </button>
           </div>
@@ -250,45 +250,51 @@ const AuditLogsPage: React.FC = () => {
         {/* Logs Table */}
         <div className="bg-black/30 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden">
           <table className="w-full">
-            <thead>
+            <thead className="hidden lg:table-header-group">
               <tr className="border-b border-white/10">
-                <th className="text-left text-sm font-medium text-gray-400 px-6 py-4">Timestamp</th>
-                <th className="text-left text-sm font-medium text-gray-400 px-6 py-4">User</th>
-                <th className="text-left text-sm font-medium text-gray-400 px-6 py-4">Action</th>
-                <th className="text-left text-sm font-medium text-gray-400 px-6 py-4">Resource</th>
-                <th className="text-left text-sm font-medium text-gray-400 px-6 py-4">Details</th>
-                <th className="text-left text-sm font-medium text-gray-400 px-6 py-4">Status</th>
+                <th className="text-left text-sm font-medium text-gray-400 px-4 py-3">Timestamp</th>
+                <th className="text-left text-sm font-medium text-gray-400 px-4 py-3">User</th>
+                <th className="text-left text-sm font-medium text-gray-400 px-4 py-3">Action</th>
+                <th className="text-left text-sm font-medium text-gray-400 px-4 py-3">Resource</th>
+                <th className="text-left text-sm font-medium text-gray-400 px-4 py-3">Details</th>
+                <th className="text-left text-sm font-medium text-gray-400 px-4 py-3">Status</th>
               </tr>
             </thead>
             <tbody>
               {filteredLogs.map((log) => (
-                <tr key={log.id} className="border-b border-white/5 hover:bg-white/5 transition-all">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center space-x-2">
-                      <Clock className="w-4 h-4 text-gray-500" />
-                      <span className="text-sm text-gray-400">{log.timestamp}</span>
+                <tr key={log.id} className="border-b border-white/5 hover:bg-white/5 transition-all block lg:table-row mb-4 lg:mb-0 bg-black/20 lg:bg-transparent rounded-lg lg:rounded-none p-3 lg:p-0">
+                  <td className="block lg:table-cell px-0 lg:px-4 py-1 lg:py-3">
+                    <span className="lg:hidden text-xs text-gray-500 mr-2">Time:</span>
+                    <div className="inline-flex items-center space-x-1">
+                      <Clock className="w-3 h-3 text-gray-500" />
+                      <span className="text-xs lg:text-sm text-gray-400">{log.timestamp}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center space-x-2">
-                      <User className="w-4 h-4 text-gray-500" />
-                      <span className="text-sm text-white">{log.user}</span>
+                  <td className="block lg:table-cell px-0 lg:px-4 py-1 lg:py-3">
+                    <span className="lg:hidden text-xs text-gray-500 mr-2">User:</span>
+                    <div className="inline-flex items-center space-x-1">
+                      <User className="w-3 h-3 text-gray-500" />
+                      <span className="text-xs lg:text-sm text-white">{log.user}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center space-x-2">
+                  <td className="block lg:table-cell px-0 lg:px-4 py-1 lg:py-3">
+                    <span className="lg:hidden text-xs text-gray-500 mr-2">Action:</span>
+                    <div className="inline-flex items-center space-x-1">
                       {getActionIcon(log.action)}
-                      <span className="text-sm text-white font-mono">{log.action}</span>
+                      <span className="text-xs lg:text-sm text-white font-mono">{log.action}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-cyan-400">{log.resource}</span>
+                  <td className="block lg:table-cell px-0 lg:px-4 py-1 lg:py-3">
+                    <span className="lg:hidden text-xs text-gray-500 mr-2">Resource:</span>
+                    <span className="text-xs lg:text-sm text-cyan-400">{log.resource}</span>
                   </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-gray-400 truncate block max-w-[300px]">{log.details}</span>
+                  <td className="block lg:table-cell px-0 lg:px-4 py-1 lg:py-3">
+                    <span className="lg:hidden text-xs text-gray-500 mr-2">Details:</span>
+                    <span className="text-xs lg:text-sm text-gray-400 break-words">{log.details}</span>
                   </td>
-                  <td className="px-6 py-4">
-                    <span className={`px-2 py-1 text-xs rounded ${getStatusColor(log.status)}`}>
+                  <td className="block lg:table-cell px-0 lg:px-4 py-1 lg:py-3">
+                    <span className="lg:hidden text-xs text-gray-500 mr-2">Status:</span>
+                    <span className={`px-2 py-0.5 text-xs rounded ${getStatusColor(log.status)}`}>
                       {log.status}
                     </span>
                   </td>
